@@ -11,14 +11,11 @@ module ActiveAdmin
       if collection.present?
         model_attributes = collection.first.attributes.keys
         filters = []
-        p model_attributes
         params.each do |p,v|
-          p p
           if model_attributes.include? p
             filters << p
           end
         end
-        p filters
         filters.each do |filter|
           collection.select! { |record| record[filter].to_s == params[filter] }
         end
